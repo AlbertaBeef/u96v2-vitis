@@ -1,0 +1,6 @@
+[submodule "overlays/Vitis_Libraries"]
+	path = overlays/Vitis_Libraries
+	url = https://github.com/Xilinx/Vitis_Libraries.git
+[submodule "overlays/Vitis-AI"]
+	path = overlays/Vitis-AI
+	url = https://github.com/Xilinx/Vitis-AI.git
