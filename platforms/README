@@ -10,10 +10,9 @@ To create the Vitis platform, run the following command:
 > make platform PLATFORM=<platform_name>
 
 Options for <platform_name> are
-   - xbzu1_base
-   - xbzu1_io
-   - xbzu1_mipiRx
-   - xbzu1_mipiRx_mipiTx
+   - u96v2_base_DP
+   - u96v2_mipiRx_DP
+   - xbzu1_mipiRx2_DP
 
 The Makefile uses the XSA from the vivado project to generate a platform.
 The generated platform will be located at:
