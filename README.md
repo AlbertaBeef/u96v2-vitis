@@ -63,18 +63,27 @@ https://github.com/Avnet/bdf/tree/94dbc854faae34312c1ddfe15d335ed69256a660
 
 # Documentation
 
-Create a Vitis Extensible Platform:
-***********************************
+## Create a Vitis Extensible Platform:
 To create one of the Vitis platforms, run the following command:
 
-> make platform PFM=<platform_name>
+```
+make platform PFM=<platform_name>
+```
 
-Create a Vitis Overlay:
-***********************
+## Create a Vitis Overlay:
 To create one of the Vitis overlays, run the following command:
 
-> make overlay OVERLAY=<overlay_name>
+```
+make overlay OVERLAY=<overlay_name>
+```
 
+## Create petalinux project:
+After building the u96v2_base_DP platform, the petalinux project can be built with the following command:
+
+```
+cd petalinux
+petalinux-config --silentconfig --get-hw-description=../platforms/avnet_u96v2_base_DP_2021_2/hw/u96v2_base_DP.xsa 
+```
 
 
 # License
