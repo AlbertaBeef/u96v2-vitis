@@ -4,3 +4,6 @@
 [submodule "overlays/Vitis-AI"]
 	path = overlays/Vitis-AI
 	url = https://github.com/Xilinx/Vitis-AI.git
+[submodule "platforms/bdf"]
+	path = platforms/bdf
+	url = https://github.com/Avnet/bdf

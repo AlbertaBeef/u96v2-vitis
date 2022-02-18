@@ -2,6 +2,8 @@
 set proj_name u96v2_base_DP
 set proj_dir ./project
 #set proj_board [get_board_parts "*:kv260:*" -latest_file_version]
+#set proj_board [get_board_parts "*:ultra96v2:*" -latest_file_version]
+set proj_board avnet.com:ultra96v2:part0:1.2
 set bd_tcl_dir ./scripts
 #set board vision_som
 set board ultra96v2
@@ -23,17 +25,31 @@ for { set i 0 } { $i < $argc } { incr i } {
   }
 }
 
-#create_project -name $proj_name -force -dir $proj_dir -part [get_property PART_NAME [get_board_parts $proj_board]]
-#set_property board_part $proj_board [current_project]
-create_project -name $proj_name -force -dir $proj_dir -part xczu1cg-sbva484-1-e
+# set board repo path
+set bdf_path [file normalize [pwd]/../../bdf]
+if {[expr {![catch {file lstat $bdf_path finfo}]}]} {
+   set_param board.repoPaths $bdf_path
+   puts "\n\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+   puts " Selected \n BDF path $bdf_path"
+   puts "*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n\n"
+} else {
+   puts "\n\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+   puts " Error specifying BDF path $bdf_path"
+   puts "*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n\n"
+   return -code ok
+}
+
+create_project -name $proj_name -force -dir $proj_dir -part [get_property PART_NAME [get_board_parts $proj_board]]
+set_property board_part $proj_board [current_project]
+#create_project -name $proj_name -force -dir $proj_dir -part xczu3eg-sbva484-1-i
 
 import_files -fileset constrs_1 $xdc_list
 
 #set_property board_connections {som240_1_connector xilinx.com:som240:som240_1_connector:1.0}  [current_project]
 
 
-#set_property ip_repo_paths $ip_repo_path [current_project]
-#update_ip_catalog
+set_property ip_repo_paths $ip_repo_path [current_project]
+update_ip_catalog
 
 # Create block diagram design and set as current design
 set design_name $proj_name
