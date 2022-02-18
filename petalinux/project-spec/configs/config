@@ -294,8 +294,7 @@ CONFIG_YOCTO_NETWORK_SSTATE_FEEDS_URL="http://petalinux.xilinx.com/sswreleases/r
 # User Layers
 #
 CONFIG_USER_LAYER_0="${PROOT}/project-spec/meta-avnet"
-CONFIG_USER_LAYER_1="${PROOT}/project-spec/meta-on-semiconductor"
-CONFIG_USER_LAYER_2=""
+CONFIG_USER_LAYER_1=""
 
 CONFIG_YOCTO_LOCAL_SSTATE_FEEDS_URL=""
 CONFIG_PRE_MIRROR_URL="http://petalinux.xilinx.com/sswreleases/rel-v2021/downloads/"

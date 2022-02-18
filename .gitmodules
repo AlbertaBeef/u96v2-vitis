@@ -11,7 +11,3 @@
 	path = petalinux/project-spec/meta-avnet
 	url = https://github.com/Avnet/meta-avnet.git
 	branch = 2021.2
-[submodule "petalinux/project-spec/meta-on-semiconductor"]
-	path = petalinux/project-spec/meta-on-semiconductor
-	url = https://github.com/Avnet/meta-on-semiconductor.git
-	branch = 2021.2
