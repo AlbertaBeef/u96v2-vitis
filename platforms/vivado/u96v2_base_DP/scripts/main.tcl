@@ -10,6 +10,7 @@ set rev None
 set output {xsa}
 set xdc_list {./xdc/pin.xdc}
 #set ip_repo_path {./ip}
+set ip_repo_path {../ip}
 set src_repo_path {./src}
 set jobs 8
 
