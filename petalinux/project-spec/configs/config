@@ -275,12 +275,12 @@ CONFIG_YOCTO_PARALLEL_MAKE=""
 #
 # Add pre-mirror url 
 #
-
+CONFIG_PRE_MIRROR_URL="http://petalinux.xilinx.com/sswreleases/rel-v2021/downloads/"
 
 #
 # Local sstate feeds settings
 #
-
+CONFIG_YOCTO_LOCAL_SSTATE_FEEDS_URL=""
 CONFIG_YOCTO_NETWORK_SSTATE_FEEDS=y
 
 #
@@ -295,8 +295,4 @@ CONFIG_YOCTO_NETWORK_SSTATE_FEEDS_URL="http://petalinux.xilinx.com/sswreleases/r
 #
 CONFIG_USER_LAYER_0="${PROOT}/project-spec/meta-avnet"
 CONFIG_USER_LAYER_1=""
-
-CONFIG_YOCTO_LOCAL_SSTATE_FEEDS_URL=""
-CONFIG_PRE_MIRROR_URL="http://petalinux.xilinx.com/sswreleases/rel-v2021/downloads/"
-
 CONFIG_SUBSYSTEM_BOOTARGS_GENERATED=" earlycon console=ttyPS0,115200 clk_ignore_unused root=/dev/mmcblk0p2 rw rootwait"

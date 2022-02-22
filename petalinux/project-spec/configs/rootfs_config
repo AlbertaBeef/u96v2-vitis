@@ -4182,6 +4182,3 @@ CONFIG_vitis-ai-library-dev=y
 #
 CONFIG_ROOTFS_ROOT_PASSWD="root"
 CONFIG_ADD_EXTRA_USERS="petalinux:petalinux;"
-CONFIG_cmake=y
-CONFIG_opencl-clhpp-dev=y
-CONFIG_opencl-headers-dev=y
