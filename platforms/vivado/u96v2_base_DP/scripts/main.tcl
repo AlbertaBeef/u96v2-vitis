@@ -106,8 +106,11 @@ foreach ip [get_ips] {
 close $fd
 
 set_property synth_checkpoint_mode Hierarchical [get_files $proj_dir/${proj_name}.srcs/sources_1/bd/$proj_name/${proj_name}.bd]
-launch_runs synth_1 -jobs $jobs
-wait_on_run synth_1
+#launch_runs synth_1 -jobs $jobs
+#wait_on_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs $jobs
+wait_on_run impl_1
+open_run impl_1
 
 set_property platform.board_id $proj_name [current_project]
 
@@ -131,7 +134,8 @@ set_property platform.vendor "xilinx" [current_project]
 
 set_property platform.version "1.0" [current_project]
 
-write_hw_platform -force -file $proj_dir/${proj_name}.xsa
+#write_hw_platform -force -file $proj_dir/${proj_name}.xsa
+write_hw_platform -force -file $proj_dir/${proj_name}.xsa -include_bit
 validate_hw_platform -verbose $proj_dir/${proj_name}.xsa
 
 exit
