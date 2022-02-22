@@ -45,8 +45,8 @@ if {$intr_cell ne ""} {
 	}
 }
 
-startgroup
-set_property -dict [list CONFIG.S00_HAS_DATA_FIFO {0} CONFIG.S01_HAS_DATA_FIFO {0}] [get_bd_cells axi_interconnect_1]
-set_property -dict [list CONFIG.S00_HAS_DATA_FIFO {0} CONFIG.S01_HAS_DATA_FIFO {0}] [get_bd_cells axi_ic_ps_e_S_AXI_HPC1_FPD]
-endgroup
+#startgroup
+#set_property -dict [list CONFIG.S00_HAS_DATA_FIFO {0} CONFIG.S01_HAS_DATA_FIFO {0}] [get_bd_cells axi_interconnect_1]
+#set_property -dict [list CONFIG.S00_HAS_DATA_FIFO {0} CONFIG.S01_HAS_DATA_FIFO {0}] [get_bd_cells axi_ic_ps_e_S_AXI_HPC1_FPD]
+#endgroup
 

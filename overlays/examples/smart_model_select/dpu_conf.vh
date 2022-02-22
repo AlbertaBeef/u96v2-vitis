@@ -1,5 +1,5 @@
 /*                                                                         
-* Copyright 2019 Xilinx Inc.                                               
+* Copyright 2022 Avnet Inc.                                               
 *                                                                          
 * Licensed under the Apache License, Version 2.0 (the "License");          
 * you may not use this file except in compliance with the License.         
@@ -39,7 +39,10 @@
 // | `define B4096                 
 // |------------------------------------------------------|
 
-`define B4096
+//`define B4096 
+//`define B2304
+//`define B1600
+`define B1152
 
 // |------------------------------------------------------|
 // | If the FPGA has Uram. You can define URAM_EN parameter               
@@ -50,7 +53,8 @@
 // | for zcu102 : `define URAM_DISABLE                 
 // |------------------------------------------------------|
 
-`define URAM_ENABLE 
+//`define URAM_ENABLE
+`define URAM_DISABLE 
 
 //config URAM
 `ifdef URAM_ENABLE
@@ -161,7 +165,8 @@
 // | `define DSP48_USAGE_LOW                
 // |------------------------------------------------------|
 
-`define DSP48_USAGE_HIGH 
+//`define DSP48_USAGE_HIGH 
+`define DSP48_USAGE_LOW
 
 // |------------------------------------------------------|
 // | Power Configuration

@@ -18,7 +18,8 @@
 if { [info exists ::env(DPU_TRD_PATH)] } {
     set path_to_hdl "$env(DPU_TRD_PATH)/dpu_ip"
 } else {
-    set path_to_hdl "../../dpu_ip"
+    #set path_to_hdl "../../dpu_ip"
+    set path_to_hdl "../../Vitis-AI/dsa/DPU-TRD/dpu_ip"
 }
 
 set path_to_packaged "./packaged_kernel_${suffix}"

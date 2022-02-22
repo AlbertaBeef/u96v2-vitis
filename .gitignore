@@ -6,8 +6,6 @@ platforms/vivado/u96v2_*/*.log
 platforms/xsct
 
 overlays/examples/*/binary_container_1
-overlays/examples/*/*.xsa
-overlays/examples/*/*.xclbin
 overlays/examples/*/packaged_kernel_*
 overlays/examples/*/tmp_kernel_pack_*
 overlays/examples/*/*.jou
@@ -18,5 +16,8 @@ overlays/examples/*/*.xo.compile_summary
 overlays/examples/*/*_accel/*.xo
 overlays/examples/*/*_accel/*.xo.compile_summary
 overlays/examples/*/*.ini
+overlays/examples/*/*.xsa
+overlays/examples/*/*.xclbin
+overlays/examples/*/*.xclbin.package_summary
 
 

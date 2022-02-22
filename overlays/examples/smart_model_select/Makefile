@@ -1,17 +1,18 @@
 # (C) Copyright 2022 Avnet, Inc.
 # SPDX-License-Identifier: Apache-2.0
 
-ifndef DIR_PRJ
- DIR_PRJ = $(shell pwd)
-endif
-ifndef HW_ACCEL_PATH
- #HW_ACCEL_PATH = ../..
- HW_ACCEL_PATH = .
-endif
-ifndef DPU_TRD_PATH
- #DPU_TRD_PATH = ../..
- DPU_TRD_PATH = ../../Vitis-AI/dsa/DPU-TRD
-endif
+#ifndef DIR_PRJ
+# DIR_PRJ = $(shell pwd)
+#endif
+#ifndef HW_ACCEL_PATH
+# HW_ACCEL_PATH = ../..
+#endif
+#ifndef DPU_TRD_PATH
+# DPU_TRD_PATH = ../..
+#endif
+DIR_PRJ := $(shell pwd)
+HW_ACCEL_PATH := .
+DPU_TRD_PATH := ../../Vitis-AI/dsa/DPU-TRD
 
 VIVADO_ROOT := $(XILINX_VIVADO)
 
@@ -23,9 +24,9 @@ MPSOC_CXX:=aarch64-linux-gnu-g++
 TARGET := hw
 DEVICE := mpsoc
 
-PLATFORM_DIR = $(shell dirname ${PLATFORM})
-ROOTFS_FILE = ${PLATFORM_DIR}/sw/*/filesystem/rootfs.ext4
-LINUX_IMAGE_FILE = ${PLATFORM_DIR}/sw/*/xrt/image/Image
+#PLATFORM_DIR = $(shell dirname ${PLATFORM})
+#ROOTFS_FILE = ${PLATFORM_DIR}/sw/*/filesystem/rootfs.ext4
+#LINUX_IMAGE_FILE = ${PLATFORM_DIR}/sw/*/xrt/image/Image
 
 XOCC_OPTS = -t ${TARGET} --platform ${PLATFORM} --save-temps --config ${DIR_PRJ}/prj_conf/prj_config --xp param:compiler.userPostSysLinkOverlayTcl=${DIR_PRJ}/prj_conf/strip_interconnects.tcl 
 dpu_HDLSRCS= ${DIR_PRJ}/kernel_xml/dpu/kernel.xml\
@@ -73,7 +74,10 @@ binary_container_1/dpu.xclbin: $(kernel_xo)
 	v++ $(XOCC_OPTS) -l --temp_dir binary_container_1 --log_dir binary_container_1/logs --remote_ip_cache binary_container_1/ip_cache -o "$@" $(+)
 
 package:
-	v++ -t ${TARGET} --platform ${PLATFORM} -p binary_container_1/dpu.xclbin  -o dpu.xclbin --package.out_dir binary_container_1 --package.rootfs ${ROOTFS_FILE} --package.sd_file ${LINUX_IMAGE_FILE} 
+	#v++ -t ${TARGET} --platform ${PLATFORM} -p binary_container_1/dpu.xclbin  -o dpu.xclbin --package.out_dir binary_container_1 --package.rootfs ${ROOTFS_FILE} --package.sd_file ${LINUX_IMAGE_FILE} 
+	-@mkdir -p binary_container_1/sd_card
+	cp ./binary_*/link/vivado/vpl/prj/prj.runs/impl_1/*.bit ./binary_*/sd_card
+	cp ./binary_*/*.xclbin ./binary_*/sd_card
 	cp ./binary_*/link/vivado/vpl/prj/prj*/sources_1/bd/*/hw_handoff/*.hwh ./binary_*/sd_card
 	cp ./binary_*/link/vivado/vpl/prj/prj.gen/sources_1/bd/*/ip/*_DPUCZDX8G_1_0/arch.json ./binary_*/sd_card
 
