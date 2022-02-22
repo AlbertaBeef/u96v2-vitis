@@ -9,13 +9,16 @@ PFM_VER = 2021_2
 
 # valid platforms / overlays
 PFM_LIST = u96v2_base_DP u96v2_mipiRx1_DP u96v2_mipiRx2_DP
-OVERLAY_LIST = benchmark defect-detect
+OVERLAY_LIST = smartcam defect-detect benchmark
 
 # override platform name based on overlay
-ifeq ($(OVERLAY),benchmark)
+ifeq ($(OVERLAY),smartcam)
   override PFM = u96v2_base_DP
 endif
 ifeq ($(OVERLAY),defect-detect)
+  override PFM = u96v2_base_DP
+endif
+ifeq ($(OVERLAY),benchmark)
   override PFM = u96v2_base_DP
 endif
 
