@@ -8,4 +8,6 @@ CONFIG_vitis-ai-library
 CONFIG_vitis-ai-library-dev
 CONFIG_vitis-ai-library-dbg
 
-
+CONFIG_vvas-utils
+CONFIG_vvas-gst
+CONFIG_vvas-accel-libs
