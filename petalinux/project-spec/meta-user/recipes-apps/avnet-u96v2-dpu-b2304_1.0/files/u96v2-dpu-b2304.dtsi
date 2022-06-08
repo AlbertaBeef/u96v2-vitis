@@ -39,6 +39,7 @@
 			};
 		};
 	};
+	/*
 	fragment@2 {
 		target = <&amba>;
 		overlay2: __overlay__ {
@@ -407,5 +408,38 @@
 		};			
 		};
 	};
+	*/
+	fragment@2 {
+		target = <&zynqmp_dpsub>;
+		overlay2: __overlay__ {
+			status = "okay";		
+		};
+	};
+	fragment@3 {
+		target = <&zynqmp_dp_snd_pcm0>;
+		overlay3: __overlay__ {
+			status = "okay";		
+		};
+	};
+	fragment@4 {
+		target = <&zynqmp_dp_snd_pcm1>;
+		overlay4: __overlay__ {
+			status = "okay";		
+		};
+	};
+	fragment@5 {
+		target = <&zynqmp_dp_snd_card0>;
+		overlay5: __overlay__ {
+			status = "okay";		
+		};
+	};
+	fragment@6 {
+		target = <&zynqmp_dp_snd_codec0>;
+		overlay6: __overlay__ {
+			status = "okay";		
+		};
+	};
+
 };
+
 
