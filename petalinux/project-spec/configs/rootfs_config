@@ -4176,6 +4176,9 @@ CONFIG_auto-login=y
 CONFIG_vitis-ai-library=y
 # CONFIG_vitis-ai-library-dbg is not set
 CONFIG_vitis-ai-library-dev=y
+# CONFIG_vvas-accel-libs is not set
+# CONFIG_vvas-gst is not set
+# CONFIG_vvas-utils is not set
 
 #
 # PetaLinux RootFS Settings
