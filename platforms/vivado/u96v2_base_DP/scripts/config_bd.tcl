@@ -1,6 +1,6 @@
 
 ################################################################
-# This is a generated script based on design: u96v2_sbc_base
+# This is a generated script based on design: u96v2_base_DP
 #
 # Though there are limitations about the generated script,
 # the main purpose of this utility is to make learning
@@ -34,7 +34,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 ################################################################
 
 # To test this script, run the following commands from Vivado Tcl console:
-# source u96v2_sbc_base_script.tcl
+# source u96v2_base_DP_script.tcl
 
 # If there is no project opened, this script will create a
 # project, but make sure you do not have an existing project
@@ -49,7 +49,7 @@ if { $list_projs eq "" } {
 
 # CHANGE DESIGN NAME HERE
 variable design_name
-set design_name u96v2_sbc_base
+set design_name u96v2_base_DP
 
 # If you do not already have an existing IP Integrator design open,
 # you can create a design using the following command:
@@ -123,17 +123,10 @@ set bCheckIPsPassed 1
 set bCheckIPs 1
 if { $bCheckIPs == 1 } {
    set list_check_ips "\ 
-avnet.com:ip:PWM_w_Int:*\
-xilinx.com:ip:axi_bram_ctrl:*\
-xilinx.com:ip:blk_mem_gen:*\
 xilinx.com:ip:axi_gpio:*\
-xilinx.com:ip:axi_intc:*\
-xilinx.com:ip:axi_uart16550:*\
 xilinx.com:ip:clk_wiz:*\
 xilinx.com:ip:proc_sys_reset:*\
 xilinx.com:ip:system_management_wiz:*\
-xilinx.com:ip:xlconcat:*\
-xilinx.com:ip:xlslice:*\
 xilinx.com:ip:zynq_ultra_ps_e:*\
 "
 
@@ -208,54 +201,6 @@ proc create_root_design { parentCell } {
   # Create ports
   set bt_ctsn [ create_bd_port -dir I bt_ctsn ]
   set bt_rtsn [ create_bd_port -dir O bt_rtsn ]
-  set hs_mezz_csi0_c [ create_bd_port -dir O -from 1 -to 0 hs_mezz_csi0_c ]
-  set hs_mezz_csi0_d [ create_bd_port -dir O -from 7 -to 0 hs_mezz_csi0_d ]
-  set hs_mezz_csi0_mclk [ create_bd_port -dir O -from 0 -to 0 hs_mezz_csi0_mclk ]
-  set hs_mezz_csi1_c [ create_bd_port -dir O -from 1 -to 0 hs_mezz_csi1_c ]
-  set hs_mezz_csi1_d [ create_bd_port -dir O -from 3 -to 0 hs_mezz_csi1_d ]
-  set hs_mezz_csi1_mclk [ create_bd_port -dir O -from 0 -to 0 hs_mezz_csi1_mclk ]
-  set hs_mezz_dsi_clk [ create_bd_port -dir O -from 1 -to 0 hs_mezz_dsi_clk ]
-  set hs_mezz_dsi_d [ create_bd_port -dir O -from 7 -to 0 hs_mezz_dsi_d ]
-  set hs_mezz_hsic_d [ create_bd_port -dir O -from 0 -to 0 hs_mezz_hsic_d ]
-  set hs_mezz_hsic_str [ create_bd_port -dir O -from 0 -to 0 hs_mezz_hsic_str ]
-  set ls_mezz_int [ create_bd_port -dir I -from 1 -to 0 ls_mezz_int ]
-  set ls_mezz_pwm0 [ create_bd_port -dir O -from 0 -to 0 ls_mezz_pwm0 ]
-  set ls_mezz_pwm1 [ create_bd_port -dir O -from 0 -to 0 ls_mezz_pwm1 ]
-  set ls_mezz_rst [ create_bd_port -dir O -from 1 -to 0 ls_mezz_rst ]
-  set ls_mezz_uart0_rx [ create_bd_port -dir I ls_mezz_uart0_rx ]
-  set ls_mezz_uart0_tx [ create_bd_port -dir O ls_mezz_uart0_tx ]
-  set ls_mezz_uart1_rx [ create_bd_port -dir I ls_mezz_uart1_rx ]
-  set ls_mezz_uart1_tx [ create_bd_port -dir O ls_mezz_uart1_tx ]
-
-  # Create instance: PWM_w_Int_0, and set properties
-  set PWM_w_Int_0 [ create_bd_cell -type ip -vlnv avnet.com:ip:PWM_w_Int PWM_w_Int_0 ]
-
-  # Create instance: PWM_w_Int_1, and set properties
-  set PWM_w_Int_1 [ create_bd_cell -type ip -vlnv avnet.com:ip:PWM_w_Int PWM_w_Int_1 ]
-
-  # Create instance: axi_bram_ctrl_0, and set properties
-  set axi_bram_ctrl_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_bram_ctrl axi_bram_ctrl_0 ]
-  set_property -dict [ list \
-   CONFIG.DATA_WIDTH {128} \
-   CONFIG.ECC_TYPE {0} \
-   CONFIG.SUPPORTS_NARROW_BURST {1} \
- ] $axi_bram_ctrl_0
-
-  # Create instance: axi_bram_ctrl_0_bram, and set properties
-  set axi_bram_ctrl_0_bram [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen axi_bram_ctrl_0_bram ]
-  set_property -dict [ list \
-   CONFIG.Memory_Type {True_Dual_Port_RAM} \
- ] $axi_bram_ctrl_0_bram
-
-  # Create instance: axi_gpio_0, and set properties
-  set axi_gpio_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_gpio axi_gpio_0 ]
-  set_property -dict [ list \
-   CONFIG.C_ALL_INPUTS {1} \
-   CONFIG.C_ALL_OUTPUTS_2 {1} \
-   CONFIG.C_GPIO2_WIDTH {2} \
-   CONFIG.C_GPIO_WIDTH {2} \
-   CONFIG.C_IS_DUAL {1} \
- ] $axi_gpio_0
 
   # Create instance: axi_gpio_1, and set properties
   set axi_gpio_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_gpio axi_gpio_1 ]
@@ -276,19 +221,6 @@ proc create_root_design { parentCell } {
    CONFIG.C_IS_DUAL {1} \
  ] $axi_gpio_2
 
-  # Create instance: axi_intc_0, and set properties
-  set axi_intc_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_intc axi_intc_0 ]
-  set_property -dict [ list \
-   CONFIG.C_IRQ_CONNECTION {1} \
-   CONFIG.C_IRQ_IS_LEVEL {0} \
- ] $axi_intc_0
-
-  # Create instance: axi_uart16550_0, and set properties
-  set axi_uart16550_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_uart16550 axi_uart16550_0 ]
-
-  # Create instance: axi_uart16550_1, and set properties
-  set axi_uart16550_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_uart16550 axi_uart16550_1 ]
-
   # Create instance: clk_wiz_0, and set properties
   set clk_wiz_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz clk_wiz_0 ]
   set_property -dict [ list \
@@ -298,9 +230,9 @@ proc create_root_design { parentCell } {
    CONFIG.CLKOUT2_PHASE_ERROR {87.180} \
    CONFIG.CLKOUT2_REQUESTED_OUT_FREQ {300} \
    CONFIG.CLKOUT2_USED {true} \
-   CONFIG.CLKOUT3_JITTER {122.158} \
+   CONFIG.CLKOUT3_JITTER {133.812} \
    CONFIG.CLKOUT3_PHASE_ERROR {87.180} \
-   CONFIG.CLKOUT3_REQUESTED_OUT_FREQ {75} \
+   CONFIG.CLKOUT3_REQUESTED_OUT_FREQ {48} \
    CONFIG.CLKOUT3_USED {true} \
    CONFIG.CLKOUT4_JITTER {115.831} \
    CONFIG.CLKOUT4_PHASE_ERROR {87.180} \
@@ -320,7 +252,7 @@ proc create_root_design { parentCell } {
    CONFIG.CLKOUT7_USED {true} \
    CONFIG.MMCM_CLKOUT0_DIVIDE_F {8.000} \
    CONFIG.MMCM_CLKOUT1_DIVIDE {4} \
-   CONFIG.MMCM_CLKOUT2_DIVIDE {16} \
+   CONFIG.MMCM_CLKOUT2_DIVIDE {25} \
    CONFIG.MMCM_CLKOUT3_DIVIDE {12} \
    CONFIG.MMCM_CLKOUT4_DIVIDE {6} \
    CONFIG.MMCM_CLKOUT5_DIVIDE {3} \
@@ -354,7 +286,7 @@ proc create_root_design { parentCell } {
   # Create instance: ps8_0_axi_periph, and set properties
   set ps8_0_axi_periph [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect ps8_0_axi_periph ]
   set_property -dict [ list \
-   CONFIG.NUM_MI {10} \
+   CONFIG.NUM_MI {3} \
  ] $ps8_0_axi_periph
 
   # Create instance: rst_ps8_0_100M, and set properties
@@ -372,102 +304,6 @@ proc create_root_design { parentCell } {
    CONFIG.VCCAUX_ALARM {false} \
    CONFIG.VCCINT_ALARM {false} \
  ] $system_management_wiz_0
-
-  # Create instance: xlconcat_0, and set properties
-  set xlconcat_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat xlconcat_0 ]
-  set_property -dict [ list \
-   CONFIG.NUM_PORTS {6} \
- ] $xlconcat_0
-
-  # Create instance: xlslice_0, and set properties
-  set xlslice_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice xlslice_0 ]
-  set_property -dict [ list \
-   CONFIG.DIN_FROM {29} \
-   CONFIG.DIN_TO {28} \
-   CONFIG.DIN_WIDTH {30} \
-   CONFIG.DOUT_WIDTH {2} \
- ] $xlslice_0
-
-  # Create instance: xlslice_1, and set properties
-  set xlslice_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice xlslice_1 ]
-  set_property -dict [ list \
-   CONFIG.DIN_FROM {27} \
-   CONFIG.DIN_TO {20} \
-   CONFIG.DIN_WIDTH {30} \
-   CONFIG.DOUT_WIDTH {8} \
- ] $xlslice_1
-
-  # Create instance: xlslice_2, and set properties
-  set xlslice_2 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice xlslice_2 ]
-  set_property -dict [ list \
-   CONFIG.DIN_FROM {19} \
-   CONFIG.DIN_TO {18} \
-   CONFIG.DIN_WIDTH {30} \
-   CONFIG.DOUT_WIDTH {2} \
- ] $xlslice_2
-
-  # Create instance: xlslice_3, and set properties
-  set xlslice_3 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice xlslice_3 ]
-  set_property -dict [ list \
-   CONFIG.DIN_FROM {17} \
-   CONFIG.DIN_TO {14} \
-   CONFIG.DIN_WIDTH {30} \
-   CONFIG.DOUT_WIDTH {4} \
- ] $xlslice_3
-
-  # Create instance: xlslice_4, and set properties
-  set xlslice_4 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice xlslice_4 ]
-  set_property -dict [ list \
-   CONFIG.DIN_FROM {13} \
-   CONFIG.DIN_TO {13} \
-   CONFIG.DIN_WIDTH {30} \
-   CONFIG.DOUT_WIDTH {1} \
- ] $xlslice_4
-
-  # Create instance: xlslice_5, and set properties
-  set xlslice_5 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice xlslice_5 ]
-  set_property -dict [ list \
-   CONFIG.DIN_FROM {12} \
-   CONFIG.DIN_TO {12} \
-   CONFIG.DIN_WIDTH {30} \
-   CONFIG.DOUT_WIDTH {1} \
- ] $xlslice_5
-
-  # Create instance: xlslice_6, and set properties
-  set xlslice_6 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice xlslice_6 ]
-  set_property -dict [ list \
-   CONFIG.DIN_FROM {11} \
-   CONFIG.DIN_TO {10} \
-   CONFIG.DIN_WIDTH {30} \
-   CONFIG.DOUT_WIDTH {2} \
- ] $xlslice_6
-
-  # Create instance: xlslice_7, and set properties
-  set xlslice_7 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice xlslice_7 ]
-  set_property -dict [ list \
-   CONFIG.DIN_FROM {9} \
-   CONFIG.DIN_TO {2} \
-   CONFIG.DIN_WIDTH {30} \
-   CONFIG.DOUT_WIDTH {8} \
- ] $xlslice_7
-
-  # Create instance: xlslice_8, and set properties
-  set xlslice_8 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice xlslice_8 ]
-  set_property -dict [ list \
-   CONFIG.DIN_FROM {1} \
-   CONFIG.DIN_TO {1} \
-   CONFIG.DIN_WIDTH {30} \
-   CONFIG.DOUT_WIDTH {1} \
- ] $xlslice_8
-
-  # Create instance: xlslice_9, and set properties
-  set xlslice_9 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlslice xlslice_9 ]
-  set_property -dict [ list \
-   CONFIG.DIN_FROM {0} \
-   CONFIG.DIN_TO {0} \
-   CONFIG.DIN_WIDTH {30} \
-   CONFIG.DOUT_WIDTH {1} \
- ] $xlslice_9
 
   # Create instance: zynq_ultra_ps_e_0, and set properties
   set zynq_ultra_ps_e_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:zynq_ultra_ps_e zynq_ultra_ps_e_0 ]
@@ -1196,6 +1032,7 @@ Port;FD4A0000;FD4AFFFF;1|FPD;DPDMA;FD4C0000;FD4CFFFF;1|FPD;DDR_XMPU5_CFG;FD05000
    CONFIG.PSU__USB__RESET__MODE {Boot Pin} \
    CONFIG.PSU__USB__RESET__POLARITY {Active Low} \
    CONFIG.PSU__USE__IRQ0 {1} \
+   CONFIG.PSU__USE__IRQ1 {1} \
    CONFIG.PSU__USE__M_AXI_GP0 {1} \
    CONFIG.PSU__USE__M_AXI_GP1 {0} \
    CONFIG.PSU__USE__M_AXI_GP2 {0} \
@@ -1203,33 +1040,14 @@ Port;FD4A0000;FD4AFFFF;1|FPD;DPDMA;FD4C0000;FD4CFFFF;1|FPD;DDR_XMPU5_CFG;FD05000
 
   # Create interface connections
   connect_bd_intf_net -intf_net S00_AXI_1 [get_bd_intf_pins ps8_0_axi_periph/S00_AXI] [get_bd_intf_pins zynq_ultra_ps_e_0/M_AXI_HPM0_FPD]
-  connect_bd_intf_net -intf_net axi_bram_ctrl_0_BRAM_PORTA [get_bd_intf_pins axi_bram_ctrl_0/BRAM_PORTA] [get_bd_intf_pins axi_bram_ctrl_0_bram/BRAM_PORTA]
-  connect_bd_intf_net -intf_net axi_bram_ctrl_0_BRAM_PORTB [get_bd_intf_pins axi_bram_ctrl_0/BRAM_PORTB] [get_bd_intf_pins axi_bram_ctrl_0_bram/BRAM_PORTB]
   connect_bd_intf_net -intf_net axi_gpio_1_GPIO [get_bd_intf_ports fan_pwm] [get_bd_intf_pins axi_gpio_1/GPIO]
   connect_bd_intf_net -intf_net axi_gpio_2_GPIO [get_bd_intf_ports wifi_en_led] [get_bd_intf_pins axi_gpio_2/GPIO]
   connect_bd_intf_net -intf_net axi_gpio_2_GPIO2 [get_bd_intf_ports bt_en_led] [get_bd_intf_pins axi_gpio_2/GPIO2]
-  connect_bd_intf_net -intf_net ps8_0_axi_periph_M00_AXI [get_bd_intf_pins axi_bram_ctrl_0/S_AXI] [get_bd_intf_pins ps8_0_axi_periph/M00_AXI]
-  connect_bd_intf_net -intf_net ps8_0_axi_periph_M01_AXI [get_bd_intf_pins axi_uart16550_0/S_AXI] [get_bd_intf_pins ps8_0_axi_periph/M01_AXI]
-  connect_bd_intf_net -intf_net ps8_0_axi_periph_M02_AXI [get_bd_intf_pins axi_uart16550_1/S_AXI] [get_bd_intf_pins ps8_0_axi_periph/M02_AXI]
-  connect_bd_intf_net -intf_net ps8_0_axi_periph_M03_AXI [get_bd_intf_pins axi_gpio_0/S_AXI] [get_bd_intf_pins ps8_0_axi_periph/M03_AXI]
-  connect_bd_intf_net -intf_net ps8_0_axi_periph_M04_AXI [get_bd_intf_pins axi_gpio_1/S_AXI] [get_bd_intf_pins ps8_0_axi_periph/M04_AXI]
-  connect_bd_intf_net -intf_net ps8_0_axi_periph_M05_AXI [get_bd_intf_pins axi_gpio_2/S_AXI] [get_bd_intf_pins ps8_0_axi_periph/M05_AXI]
-  connect_bd_intf_net -intf_net ps8_0_axi_periph_M06_AXI [get_bd_intf_pins PWM_w_Int_0/s00_axi] [get_bd_intf_pins ps8_0_axi_periph/M06_AXI]
-  connect_bd_intf_net -intf_net ps8_0_axi_periph_M07_AXI [get_bd_intf_pins PWM_w_Int_1/s00_axi] [get_bd_intf_pins ps8_0_axi_periph/M07_AXI]
-  connect_bd_intf_net -intf_net ps8_0_axi_periph_M08_AXI [get_bd_intf_pins ps8_0_axi_periph/M08_AXI] [get_bd_intf_pins system_management_wiz_0/S_AXI_LITE]
-  connect_bd_intf_net -intf_net ps8_0_axi_periph_M09_AXI [get_bd_intf_pins axi_intc_0/s_axi] [get_bd_intf_pins ps8_0_axi_periph/M09_AXI]
+  connect_bd_intf_net -intf_net ps8_0_axi_periph_M00_AXI [get_bd_intf_pins ps8_0_axi_periph/M00_AXI] [get_bd_intf_pins system_management_wiz_0/S_AXI_LITE]
+  connect_bd_intf_net -intf_net ps8_0_axi_periph_M01_AXI [get_bd_intf_pins axi_gpio_1/S_AXI] [get_bd_intf_pins ps8_0_axi_periph/M01_AXI]
+  connect_bd_intf_net -intf_net ps8_0_axi_periph_M02_AXI [get_bd_intf_pins axi_gpio_2/S_AXI] [get_bd_intf_pins ps8_0_axi_periph/M02_AXI]
 
   # Create port connections
-  connect_bd_net -net PWM_w_Int_0_Interrupt_Out [get_bd_pins PWM_w_Int_0/Interrupt_Out] [get_bd_pins xlconcat_0/In2]
-  connect_bd_net -net PWM_w_Int_0_PWM_out [get_bd_ports ls_mezz_pwm0] [get_bd_pins PWM_w_Int_0/PWM_out]
-  connect_bd_net -net PWM_w_Int_1_Interrupt_Out [get_bd_pins PWM_w_Int_1/Interrupt_Out] [get_bd_pins xlconcat_0/In3]
-  connect_bd_net -net PWM_w_Int_1_PWM_out [get_bd_ports ls_mezz_pwm1] [get_bd_pins PWM_w_Int_1/PWM_out]
-  connect_bd_net -net axi_gpio_0_gpio2_io_o [get_bd_ports ls_mezz_rst] [get_bd_pins axi_gpio_0/gpio2_io_o]
-  connect_bd_net -net axi_intc_0_irq [get_bd_pins axi_intc_0/irq] [get_bd_pins xlconcat_0/In5]
-  connect_bd_net -net axi_uart16550_0_ip2intc_irpt [get_bd_pins axi_uart16550_0/ip2intc_irpt] [get_bd_pins xlconcat_0/In0]
-  connect_bd_net -net axi_uart16550_0_sout [get_bd_ports ls_mezz_uart0_tx] [get_bd_pins axi_uart16550_0/sout]
-  connect_bd_net -net axi_uart16550_1_ip2intc_irpt [get_bd_pins axi_uart16550_1/ip2intc_irpt] [get_bd_pins xlconcat_0/In1]
-  connect_bd_net -net axi_uart16550_1_sout [get_bd_ports ls_mezz_uart1_tx] [get_bd_pins axi_uart16550_1/sout]
   connect_bd_net -net clk_wiz_0_clk_out1 [get_bd_pins clk_wiz_0/clk_out1] [get_bd_pins proc_sys_reset_0/slowest_sync_clk]
   connect_bd_net -net clk_wiz_0_clk_out2 [get_bd_pins clk_wiz_0/clk_out2] [get_bd_pins proc_sys_reset_1/slowest_sync_clk]
   connect_bd_net -net clk_wiz_0_clk_out3 [get_bd_pins clk_wiz_0/clk_out3] [get_bd_pins proc_sys_reset_2/slowest_sync_clk]
@@ -1239,36 +1057,14 @@ Port;FD4A0000;FD4AFFFF;1|FPD;DPDMA;FD4C0000;FD4CFFFF;1|FPD;DDR_XMPU5_CFG;FD05000
   connect_bd_net -net clk_wiz_0_clk_out7 [get_bd_pins clk_wiz_0/clk_out7] [get_bd_pins proc_sys_reset_6/slowest_sync_clk]
   connect_bd_net -net clk_wiz_0_locked [get_bd_pins clk_wiz_0/locked] [get_bd_pins proc_sys_reset_0/dcm_locked] [get_bd_pins proc_sys_reset_1/dcm_locked] [get_bd_pins proc_sys_reset_2/dcm_locked] [get_bd_pins proc_sys_reset_3/dcm_locked] [get_bd_pins proc_sys_reset_4/dcm_locked] [get_bd_pins proc_sys_reset_5/dcm_locked] [get_bd_pins proc_sys_reset_6/dcm_locked]
   connect_bd_net -net emio_uart0_ctsn_0_1 [get_bd_ports bt_ctsn] [get_bd_pins zynq_ultra_ps_e_0/emio_uart0_ctsn]
-  connect_bd_net -net gpio_io_i_0_1 [get_bd_ports ls_mezz_int] [get_bd_pins axi_gpio_0/gpio_io_i] [get_bd_pins xlconcat_0/In4]
-  connect_bd_net -net proc_sys_reset_0_peripheral_aresetn [get_bd_pins PWM_w_Int_0/s00_axi_aresetn] [get_bd_pins PWM_w_Int_1/s00_axi_aresetn] [get_bd_pins axi_bram_ctrl_0/s_axi_aresetn] [get_bd_pins axi_gpio_0/s_axi_aresetn] [get_bd_pins axi_gpio_1/s_axi_aresetn] [get_bd_pins axi_gpio_2/s_axi_aresetn] [get_bd_pins axi_intc_0/s_axi_aresetn] [get_bd_pins axi_uart16550_0/s_axi_aresetn] [get_bd_pins axi_uart16550_1/s_axi_aresetn] [get_bd_pins ps8_0_axi_periph/ARESETN] [get_bd_pins ps8_0_axi_periph/M00_ARESETN] [get_bd_pins ps8_0_axi_periph/M01_ARESETN] [get_bd_pins ps8_0_axi_periph/M02_ARESETN] [get_bd_pins ps8_0_axi_periph/M03_ARESETN] [get_bd_pins ps8_0_axi_periph/M04_ARESETN] [get_bd_pins ps8_0_axi_periph/M05_ARESETN] [get_bd_pins ps8_0_axi_periph/M06_ARESETN] [get_bd_pins ps8_0_axi_periph/M07_ARESETN] [get_bd_pins ps8_0_axi_periph/M08_ARESETN] [get_bd_pins ps8_0_axi_periph/M09_ARESETN] [get_bd_pins ps8_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps8_0_100M/peripheral_aresetn] [get_bd_pins system_management_wiz_0/s_axi_aresetn]
-  connect_bd_net -net sin_0_1 [get_bd_ports ls_mezz_uart0_rx] [get_bd_pins axi_uart16550_0/sin]
-  connect_bd_net -net sin_0_2 [get_bd_ports ls_mezz_uart1_rx] [get_bd_pins axi_uart16550_1/sin]
-  connect_bd_net -net xlconcat_0_dout [get_bd_pins xlconcat_0/dout] [get_bd_pins zynq_ultra_ps_e_0/pl_ps_irq0]
-  connect_bd_net -net xlslice_0_Dout [get_bd_ports hs_mezz_csi0_c] [get_bd_pins xlslice_0/Dout]
-  connect_bd_net -net xlslice_1_Dout [get_bd_ports hs_mezz_csi0_d] [get_bd_pins xlslice_1/Dout]
-  connect_bd_net -net xlslice_2_Dout [get_bd_ports hs_mezz_csi1_c] [get_bd_pins xlslice_2/Dout]
-  connect_bd_net -net xlslice_3_Dout [get_bd_ports hs_mezz_csi1_d] [get_bd_pins xlslice_3/Dout]
-  connect_bd_net -net xlslice_4_Dout [get_bd_ports hs_mezz_csi0_mclk] [get_bd_pins xlslice_4/Dout]
-  connect_bd_net -net xlslice_5_Dout [get_bd_ports hs_mezz_csi1_mclk] [get_bd_pins xlslice_5/Dout]
-  connect_bd_net -net xlslice_6_Dout [get_bd_ports hs_mezz_dsi_clk] [get_bd_pins xlslice_6/Dout]
-  connect_bd_net -net xlslice_7_Dout [get_bd_ports hs_mezz_dsi_d] [get_bd_pins xlslice_7/Dout]
-  connect_bd_net -net xlslice_8_Dout [get_bd_ports hs_mezz_hsic_str] [get_bd_pins xlslice_8/Dout]
-  connect_bd_net -net xlslice_9_Dout [get_bd_ports hs_mezz_hsic_d] [get_bd_pins xlslice_9/Dout]
-  connect_bd_net -net zynq_ultra_ps_e_0_emio_gpio_o [get_bd_pins xlslice_0/Din] [get_bd_pins xlslice_1/Din] [get_bd_pins xlslice_2/Din] [get_bd_pins xlslice_3/Din] [get_bd_pins xlslice_4/Din] [get_bd_pins xlslice_5/Din] [get_bd_pins xlslice_6/Din] [get_bd_pins xlslice_7/Din] [get_bd_pins xlslice_8/Din] [get_bd_pins xlslice_9/Din] [get_bd_pins zynq_ultra_ps_e_0/emio_gpio_o]
+  connect_bd_net -net proc_sys_reset_0_peripheral_aresetn [get_bd_pins axi_gpio_1/s_axi_aresetn] [get_bd_pins axi_gpio_2/s_axi_aresetn] [get_bd_pins ps8_0_axi_periph/ARESETN] [get_bd_pins ps8_0_axi_periph/M00_ARESETN] [get_bd_pins ps8_0_axi_periph/M01_ARESETN] [get_bd_pins ps8_0_axi_periph/M02_ARESETN] [get_bd_pins ps8_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps8_0_100M/peripheral_aresetn] [get_bd_pins system_management_wiz_0/s_axi_aresetn]
   connect_bd_net -net zynq_ultra_ps_e_0_emio_uart0_rtsn [get_bd_ports bt_rtsn] [get_bd_pins zynq_ultra_ps_e_0/emio_uart0_rtsn]
-  connect_bd_net -net zynq_ultra_ps_e_0_pl_clk0 [get_bd_pins PWM_w_Int_0/s00_axi_aclk] [get_bd_pins PWM_w_Int_1/s00_axi_aclk] [get_bd_pins axi_bram_ctrl_0/s_axi_aclk] [get_bd_pins axi_gpio_0/s_axi_aclk] [get_bd_pins axi_gpio_1/s_axi_aclk] [get_bd_pins axi_gpio_2/s_axi_aclk] [get_bd_pins axi_intc_0/s_axi_aclk] [get_bd_pins axi_uart16550_0/s_axi_aclk] [get_bd_pins axi_uart16550_1/s_axi_aclk] [get_bd_pins clk_wiz_0/clk_in1] [get_bd_pins ps8_0_axi_periph/ACLK] [get_bd_pins ps8_0_axi_periph/M00_ACLK] [get_bd_pins ps8_0_axi_periph/M01_ACLK] [get_bd_pins ps8_0_axi_periph/M02_ACLK] [get_bd_pins ps8_0_axi_periph/M03_ACLK] [get_bd_pins ps8_0_axi_periph/M04_ACLK] [get_bd_pins ps8_0_axi_periph/M05_ACLK] [get_bd_pins ps8_0_axi_periph/M06_ACLK] [get_bd_pins ps8_0_axi_periph/M07_ACLK] [get_bd_pins ps8_0_axi_periph/M08_ACLK] [get_bd_pins ps8_0_axi_periph/M09_ACLK] [get_bd_pins ps8_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps8_0_100M/slowest_sync_clk] [get_bd_pins system_management_wiz_0/s_axi_aclk] [get_bd_pins zynq_ultra_ps_e_0/maxihpm0_fpd_aclk] [get_bd_pins zynq_ultra_ps_e_0/pl_clk0]
+  connect_bd_net -net zynq_ultra_ps_e_0_pl_clk0 [get_bd_pins axi_gpio_1/s_axi_aclk] [get_bd_pins axi_gpio_2/s_axi_aclk] [get_bd_pins clk_wiz_0/clk_in1] [get_bd_pins ps8_0_axi_periph/ACLK] [get_bd_pins ps8_0_axi_periph/M00_ACLK] [get_bd_pins ps8_0_axi_periph/M01_ACLK] [get_bd_pins ps8_0_axi_periph/M02_ACLK] [get_bd_pins ps8_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps8_0_100M/slowest_sync_clk] [get_bd_pins system_management_wiz_0/s_axi_aclk] [get_bd_pins zynq_ultra_ps_e_0/maxihpm0_fpd_aclk] [get_bd_pins zynq_ultra_ps_e_0/pl_clk0]
   connect_bd_net -net zynq_ultra_ps_e_0_pl_resetn0 [get_bd_pins clk_wiz_0/resetn] [get_bd_pins proc_sys_reset_0/ext_reset_in] [get_bd_pins proc_sys_reset_1/ext_reset_in] [get_bd_pins proc_sys_reset_2/ext_reset_in] [get_bd_pins proc_sys_reset_3/ext_reset_in] [get_bd_pins proc_sys_reset_4/ext_reset_in] [get_bd_pins proc_sys_reset_5/ext_reset_in] [get_bd_pins proc_sys_reset_6/ext_reset_in] [get_bd_pins rst_ps8_0_100M/ext_reset_in] [get_bd_pins zynq_ultra_ps_e_0/pl_resetn0]
 
   # Create address segments
-  assign_bd_address -offset 0xA0010000 -range 0x00010000 -target_address_space [get_bd_addr_spaces zynq_ultra_ps_e_0/Data] [get_bd_addr_segs PWM_w_Int_0/s00_axi/reg0] -force
-  assign_bd_address -offset 0xA0020000 -range 0x00010000 -target_address_space [get_bd_addr_spaces zynq_ultra_ps_e_0/Data] [get_bd_addr_segs PWM_w_Int_1/s00_axi/reg0] -force
-  assign_bd_address -offset 0xA0000000 -range 0x00004000 -target_address_space [get_bd_addr_spaces zynq_ultra_ps_e_0/Data] [get_bd_addr_segs axi_bram_ctrl_0/S_AXI/Mem0] -force
-  assign_bd_address -offset 0xA0030000 -range 0x00010000 -target_address_space [get_bd_addr_spaces zynq_ultra_ps_e_0/Data] [get_bd_addr_segs axi_gpio_0/S_AXI/Reg] -force
   assign_bd_address -offset 0xA0040000 -range 0x00010000 -target_address_space [get_bd_addr_spaces zynq_ultra_ps_e_0/Data] [get_bd_addr_segs axi_gpio_1/S_AXI/Reg] -force
   assign_bd_address -offset 0xA0050000 -range 0x00010000 -target_address_space [get_bd_addr_spaces zynq_ultra_ps_e_0/Data] [get_bd_addr_segs axi_gpio_2/S_AXI/Reg] -force
-  assign_bd_address -offset 0xA0090000 -range 0x00010000 -target_address_space [get_bd_addr_spaces zynq_ultra_ps_e_0/Data] [get_bd_addr_segs axi_intc_0/S_AXI/Reg] -force
-  assign_bd_address -offset 0xA0060000 -range 0x00010000 -target_address_space [get_bd_addr_spaces zynq_ultra_ps_e_0/Data] [get_bd_addr_segs axi_uart16550_0/S_AXI/Reg] -force
-  assign_bd_address -offset 0xA0070000 -range 0x00010000 -target_address_space [get_bd_addr_spaces zynq_ultra_ps_e_0/Data] [get_bd_addr_segs axi_uart16550_1/S_AXI/Reg] -force
   assign_bd_address -offset 0xA0080000 -range 0x00010000 -target_address_space [get_bd_addr_spaces zynq_ultra_ps_e_0/Data] [get_bd_addr_segs system_management_wiz_0/S_AXI_LITE/Reg] -force
 
 
@@ -1277,9 +1073,10 @@ Port;FD4A0000;FD4AFFFF;1|FPD;DPDMA;FD4C0000;FD4CFFFF;1|FPD;DDR_XMPU5_CFG;FD05000
 
   # Create PFM attributes
   set_property PFM_NAME {avnet.com:av:u96v2_sbc_base:1.0} [get_files [current_bd_design].bd]
-  set_property PFM.IRQ {intr {id 0 range 32}} [get_bd_cells /axi_intc_0]
   set_property PFM.CLOCK {  clk_out1 {id "0" is_default "true" proc_sys_reset "proc_sys_reset_0" status "fixed"}  clk_out2 {id "1" is_default "false" proc_sys_reset "proc_sys_reset_1" status "fixed"}  clk_out3 {id "2" is_default "false" proc_sys_reset "/proc_sys_reset_2" status "fixed"}  clk_out4 {id "3" is_default "false" proc_sys_reset "/proc_sys_reset_3" status "fixed"}  clk_out5 {id "4" is_default "false" proc_sys_reset "/proc_sys_reset_4" status "fixed"}  clk_out6 {id "5" is_default "false" proc_sys_reset "/proc_sys_reset_5" status "fixed"}  clk_out7 {id "6" is_default "false" proc_sys_reset "/proc_sys_reset_6" status "fixed"}  } [get_bd_cells /clk_wiz_0]
+  set_property PFM.AXI_PORT {M03_AXI {memport "M_AXI_GP" sptag "" memory "" is_range "false"} M04_AXI {memport "M_AXI_GP" sptag "" memory "" is_range "false"} M05_AXI {memport "M_AXI_GP" sptag "" memory "" is_range "false"} M06_AXI {memport "M_AXI_GP" sptag "" memory "" is_range "false"} M07_AXI {memport "M_AXI_GP" sptag "" memory "" is_range "false"} M08_AXI {memport "M_AXI_GP" sptag "" memory "" is_range "false"} M09_AXI {memport "M_AXI_GP" sptag "" memory "" is_range "false"} M10_AXI {memport "M_AXI_GP" sptag "" memory "" is_range "false"} M11_AXI {memport "M_AXI_GP" sptag "" memory "" is_range "false"} M12_AXI {memport "M_AXI_GP" sptag "" memory "" is_range "false"} M13_AXI {memport "M_AXI_GP" sptag "" memory "" is_range "false"} M14_AXI {memport "M_AXI_GP" sptag "" memory "" is_range "false"} M15_AXI {memport "M_AXI_GP" sptag "" memory "" is_range "false"} M16_AXI {memport "M_AXI_GP" sptag "" memory "" is_range "false"}} [get_bd_cells /ps8_0_axi_periph]
   set_property PFM.AXI_PORT {  M_AXI_HPM1_FPD {memport "M_AXI_GP"}  S_AXI_HPC0_FPD {memport "S_AXI_HPC" sptag "HPC0" memory "zynq_ultra_ps_e_0 HPC0_DDR_LOW"}  S_AXI_HPC1_FPD {memport "S_AXI_HPC" sptag "HPC1" memory "zynq_ultra_ps_e_0 HPC1_DDR_LOW"}  S_AXI_HP0_FPD {memport "S_AXI_HP" sptag "HP0" memory "zynq_ultra_ps_e_0 HP0_DDR_LOW"}  S_AXI_HP1_FPD {memport "S_AXI_HP" sptag "HP1" memory "zynq_ultra_ps_e_0 HP1_DDR_LOW"}  S_AXI_HP2_FPD {memport "S_AXI_HP" sptag "HP2" memory "zynq_ultra_ps_e_0 HP2_DDR_LOW"}  S_AXI_HP3_FPD {memport "S_AXI_HP" sptag "HP3" memory "zynq_ultra_ps_e_0 HP3_DDR_LOW"}  } [get_bd_cells /zynq_ultra_ps_e_0]
+  set_property PFM.IRQ {pl_ps_irq0 {id 0 range 7}} [get_bd_cells /zynq_ultra_ps_e_0]
 
 
   validate_bd_design
@@ -1291,9 +1088,6 @@ Port;FD4A0000;FD4AFFFF;1|FPD;DPDMA;FD4C0000;FD4CFFFF;1|FPD;DDR_XMPU5_CFG;FD05000
 ##################################################################
 # MAIN FLOW
 ##################################################################
-
-
-common::send_gid_msg -ssname BD::TCL -id 2052 -severity "CRITICAL WARNING" "This Tcl script was generated from a block design that is out-of-date/locked. It is possible that design <$design_name> may result in errors during construction."
 
 create_root_design ""
 
