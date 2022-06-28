@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0
 /*
- * dts file for Avnet ZUBoard DPU B512 design
+ * dts file for Avnet Ultra96-V2 DPU B2304 design
  *
  * (C) Copyright 2022, Avnet, Inc.
  *
@@ -14,7 +14,7 @@
 		overlay0: __overlay__ {
 			#address-cells = <2>;
 			#size-cells = <2>;
-			firmware-name = "zub1cg-dpu-b512.bit.bin";
+			firmware-name = "u96v2-dpu-b2304.bit.bin";
 			resets = <&zynqmp_reset 116>, <&zynqmp_reset 117>, <&zynqmp_reset 118>, <&zynqmp_reset 119>;
 		};
 	};
