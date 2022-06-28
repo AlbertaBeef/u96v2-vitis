@@ -4173,6 +4173,7 @@ CONFIG_auto-login=y
 #
 # user packages 
 #
+CONFIG_dlib=y
 CONFIG_vitis-ai-library=y
 # CONFIG_vitis-ai-library-dbg is not set
 CONFIG_vitis-ai-library-dev=y
